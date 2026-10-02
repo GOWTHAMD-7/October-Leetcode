@@ -1,0 +1,19 @@
+LeetCode 22 - Generate Parentheses
+
+Approach:
+
+1. Use backtracking to build valid parentheses combinations of length 2 * n incrementally.
+2. Track the number of placed open parentheses (open) and close parentheses (close):
+   - Base Case: When the current string length reaches 2 * len, add the constructed string to the result list ret.
+   - If open > close and open < len: We can either add another '(' (and increment open) or close an existing open parenthesis by adding ')' (and increment close).
+   - If open > close and open == len: We have used all n opening brackets, so we can only append ')' (and increment close).
+   - If open == close and open < len: We cannot close any parentheses without making the prefix invalid, so we must add '(' (and increment open).
+3. Backtrack after each recursive call by removing the last appended character to explore all branches.
+
+Complexity:
+
+Time: O(4^n / sqrt(n)), bounded by the n-th Catalan number C_n, which counts the number of valid parentheses combinations.
+Space: O(n) auxiliary space for the recursion stack and the running StringBuilder of length 2*n (excluding the output list).
+
+Key Takeaway:
+Maintaining counts of placed open and close brackets ensures that '(' is only added when open < n and ')' is only added when open > close, pruning invalid strings early.

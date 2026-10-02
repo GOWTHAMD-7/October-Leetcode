@@ -1,0 +1,17 @@
+LeetCode 701 - Insert into a Binary Search Tree
+
+Approach:
+
+1. If the root is null, create and return a new TreeNode containing val.
+2. Otherwise, recursively search for the appropriate insertion position using BST properties:
+   - If root.val > val: the new value belongs in the left subtree. If root.left is null, attach new TreeNode(val) to root.left; otherwise, recurse into root.left.
+   - If root.val < val: the new value belongs in the right subtree. If root.right is null, attach new TreeNode(val) to root.right; otherwise, recurse into root.right.
+3. Return the original root of the BST.
+
+Complexity:
+
+Time: O(h) where h is the height of the BST (O(log n) on average for a balanced tree, O(n) in the worst case for a skewed tree).
+Space: O(h) auxiliary recursion stack space.
+
+Key Takeaway:
+Navigating left or right by comparing the target value with the current node value allows locating the correct empty child slot in BST search time.
