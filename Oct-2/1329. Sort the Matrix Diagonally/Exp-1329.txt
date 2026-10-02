@@ -1,0 +1,19 @@
+LeetCode 1329 - Sort the Matrix Diagonally
+
+Approach:
+
+1. Traverse each diagonal starting from the first column (cells (k, 0) for 0 <= k < m):
+   - Collect all elements along the diagonal (i, j) where i and j increment simultaneously into a min-heap (PriorityQueue).
+   - Re-traverse the same diagonal and overwrite the matrix elements with the sorted values extracted from the min-heap.
+2. Traverse each diagonal starting from the first row (cells (0, k) for 0 <= k < n):
+   - Collect all elements along the diagonal into a min-heap.
+   - Re-traverse the diagonal and write back the sorted values into the matrix.
+3. Return the modified in-place sorted matrix.
+
+Complexity:
+
+Time: O(m * n * log(min(m, n))) since each diagonal has length at most min(m, n) and sorting each diagonal takes O(L log L) time using a priority queue.
+Space: O(min(m, n)) auxiliary space to store elements of a single diagonal in the priority queue.
+
+Key Takeaway:
+Diagonals running from top-left to bottom-right share the property that i - j is constant. By initiating traversals from the left edge (k, 0) and top edge (0, k), all diagonals can be extracted, sorted with a min-heap, and written back in place.
