@@ -1,0 +1,18 @@
+LeetCode 2586 - Count the Number of Vowel Strings in Range
+
+Approach:
+
+1. Initialize a hash set containing all lowercase English vowels ('a', 'e', 'i', 'o', 'u').
+2. Iterate through the array words from index left to right inclusive.
+3. For each word in the range:
+   - Check if both the first character s.charAt(0) and the last character s.charAt(s.length() - 1) are present in the vowel set.
+   - If both are vowels, increment the counter ret.
+4. Return the total count ret.
+
+Complexity:
+
+Time: O(R - L + 1) where R is right and L is left, since checking the first and last characters of each string takes O(1) time.
+Space: O(1) auxiliary space, as the vowel set contains only 5 characters.
+
+Key Takeaway:
+Vowel string verification only requires inspecting the boundary characters (indices 0 and length - 1) of strings within the specified index range, yielding an immediate O(1) per-string check using a set.

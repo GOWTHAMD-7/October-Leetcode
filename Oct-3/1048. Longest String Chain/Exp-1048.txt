@@ -1,0 +1,20 @@
+LeetCode 1048 - Longest String Chain
+
+Approach:
+
+1. Sort words in ascending order of string length so that potential predecessor strings are processed before longer strings.
+2. Maintain a hash map (map) where the key is a word and the value is the length of the longest chain ending at that word.
+3. For each word:
+   - Initialize its chain length cnt = 1.
+   - Generate all possible predecessors of length L - 1 by deleting one character at each position j (from 0 to L - 1).
+   - If the predecessor exists in map, update cnt = Math.max(cnt, map.get(predecessor) + 1).
+   - Store map.put(s, cnt) and update the global maximum max.
+4. Return max.
+
+Complexity:
+
+Time: O(N log N + N * L^2) where N is the number of words and L is the maximum length of a word (up to 16 in LeetCode). Sorting takes O(N log N * L), and for each word we perform L substring operations of length L.
+Space: O(N * L) space to store the words and their longest chain lengths in the hash map.
+
+Key Takeaway:
+Sorting by word length transforms the problem into dynamic programming over a directed acyclic graph (DAG). Looking up predecessors by single-character deletions (O(L^2)) is much faster than checking every pair of words.
