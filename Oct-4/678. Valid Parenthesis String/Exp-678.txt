@@ -1,0 +1,24 @@
+LeetCode 678 - Valid Parenthesis String
+
+Approach:
+
+1. Use top-down dynamic programming with memoization to determine if the string can be valid.
+2. Define check(s, pos, cnt, dp):
+   - State: pos is the current character index in s, and cnt is the count of unmatched open parentheses '('.
+   - Base Case: When pos == len, return 2 (valid) if cnt == 0, else 1 (invalid).
+   - If s.charAt(pos) == '(': Recurse to pos + 1 with cnt + 1.
+   - If s.charAt(pos) == ')': If cnt == 0, the prefix is invalid (return 1); otherwise recurse to pos + 1 with cnt - 1.
+   - If s.charAt(pos) == '*': Try three possibilities:
+     * Treat '*' as '(' -> recurse with cnt + 1.
+     * Treat '*' as ')' -> if cnt > 0, recurse with cnt - 1.
+     * Treat '*' as empty string -> recurse with cnt.
+     * If any choice returns 2 (valid), return 2.
+3. Memoize computed results in dp[pos][cnt] (0: uncomputed, 1: invalid, 2: valid) to avoid overlapping subproblems.
+
+Complexity:
+
+Time: O(n^2) where n is the length of string s, as there are at most n * n distinct states and each state takes O(1) transitions.
+Space: O(n^2) space for the memoization table dp and O(n) for the recursion stack.
+
+Key Takeaway:
+Wildcard characters '*' introduce branching choices ('(', ')', or empty). Memoizing (index, open_count) prevents exponential recursion while accurately validating balanced parentheses.

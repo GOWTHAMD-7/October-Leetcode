@@ -1,0 +1,19 @@
+LeetCode 969 - Pancake Sorting
+
+Approach:
+
+1. Iterate backwards from index k = arr.length - 1 down to 0, placing the maximum unsorted element at its correct target index k in each step.
+2. In each iteration:
+   - Find the index pos of the maximum element in arr[0...k].
+   - If pos == k, the element is already in place; decrement k.
+   - If pos == 0, the maximum element is at index 0; reverse the prefix of length k + 1 to move it directly to index k.
+   - If 0 < pos < k, first reverse the prefix of length pos + 1 to bring the maximum element to index 0, then reverse the prefix of length k + 1 to move it to index k.
+3. Record each 1-indexed flip length in ret and return ret.
+
+Complexity:
+
+Time: O(n^2) where n is the length of arr. Finding the maximum takes O(n) and reversing takes O(n), repeated at most n times.
+Space: O(1) auxiliary space (excluding the output list).
+
+Key Takeaway:
+Any unsorted prefix can place its maximum element at the end using at most 2 flips: one flip to move it to index 0, and a second flip to move it to index k.

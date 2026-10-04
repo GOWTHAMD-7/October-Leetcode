@@ -1,0 +1,19 @@
+LeetCode 4070 - Minimum Rotations to Dial a Number I
+
+Approach:
+
+1. Dialing begins from digit 0. To reach the first digit prev = s[0], the minimum rotations on a circular dial of 10 digits (0-9) is min(prev, 10 - prev).
+2. For each subsequent digit next in string s:
+   - Compute the direct rotation distance: |next - prev|.
+   - Compute the wrap-around rotation distance: 10 - |next - prev|.
+   - Add the minimum of the two rotational directions (min(direct, wrap-around)) to total rotations cnt.
+   - Update prev = next.
+3. Return the total rotation count cnt.
+
+Complexity:
+
+Time: O(n) where n is the length of string s, as each digit transition is processed in O(1) time.
+Space: O(1) auxiliary space.
+
+Key Takeaway:
+On a circular dial of size 10, the shortest distance between two digits a and b is min(|a - b|, 10 - |a - b|).
