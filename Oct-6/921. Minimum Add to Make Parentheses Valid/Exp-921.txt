@@ -1,0 +1,20 @@
+LeetCode 921 - Minimum Add to Make Parentheses Valid
+
+Approach:
+
+1. Use a stack to track unmatched parentheses while iterating through the string s.
+2. For each character:
+   - If it is '(', push it onto the stack.
+   - If it is ')':
+     * If the stack is non-empty and the top is '(', pop the matched '(' from the stack.
+     * Otherwise, push ')' onto the stack as an unmatched closing parenthesis.
+3. After scanning the entire string, the stack contains all unmatched parentheses (both '(' and ')').
+4. The size of the stack represents the minimum number of insertions required to make the string valid.
+
+Complexity:
+
+Time: O(n) where n is the length of string s, as each character is pushed/popped at most once.
+Space: O(n) auxiliary space to store unmatched characters in the stack.
+
+Key Takeaway:
+Every valid pair '()' neutralizes each other. Maintaining unmatched characters on a stack ensures that any leftover '(' and ')' directly correspond to the exact minimum insertions needed to balance the string.

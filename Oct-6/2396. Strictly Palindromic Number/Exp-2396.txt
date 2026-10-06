@@ -1,0 +1,18 @@
+LeetCode 2396 - Strictly Palindromic Number
+
+Approach:
+
+1. For each base i from 2 up to n - 2:
+   - Convert number n into base i by repeatedly taking remainder t % i and dividing t by i until t reaches 0.
+   - Store the base-i digits in a list.
+   - Check if the sequence of digits forms a palindrome using two pointers (from start and end).
+   - If any base representation is not a palindrome, return false.
+2. If all bases from 2 to n - 2 produce palindromes, return true (mathematically, for n >= 4, in base n - 2, n = 1 * (n - 2) + 2 = "12", which is never palindromic, so it will always evaluate to false).
+
+Complexity:
+
+Time: O(n * log n) in the general implementation since checking each base i takes O(log_i(n)) operations.
+Space: O(log n) space to store the base representation of n.
+
+Key Takeaway:
+Converting a number to base b through repeated division and modulo allows two-pointer palindromic verification. Mathematically, no integer n >= 4 can be strictly palindromic because in base n - 2 its representation is always "12".

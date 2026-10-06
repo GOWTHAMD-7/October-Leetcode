@@ -1,0 +1,18 @@
+LeetCode 3271 - Hash Divided String
+
+Approach:
+
+1. Divide the input string s of length n into substrings of length k.
+2. For each substring of size k:
+   - Sum the hash values of each character, where 'a' = 0, 'b' = 1, ..., 'z' = 25.
+   - Compute the hashed character by taking the sum modulo 26: (sum % 26) + 'a'.
+   - Append the resulting character to a StringBuilder.
+3. Return the constructed result string.
+
+Complexity:
+
+Time: O(n) where n is the length of string s, as each character is visited exactly once during the chunk summation.
+Space: O(n / k) auxiliary space for the StringBuilder storing the output string.
+
+Key Takeaway:
+Processing the string in fixed window blocks of length k and mapping character sums modulo 26 directly compresses each block into a single hashed character in linear time.

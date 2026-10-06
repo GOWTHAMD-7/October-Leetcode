@@ -1,0 +1,18 @@
+LeetCode 1325 - Delete Leaves With a Given Value
+
+Approach:
+
+1. Create a dummy head node whose right child points to root to handle edge cases where the root itself becomes a target leaf node and needs to be deleted.
+2. Recursively prune children in a bottom-up (post-order) traversal:
+   - Recurse into the right child: if the right subtree simplifies down to a leaf node with value equal to target, delete it by setting root.right = null.
+   - Recurse into the left child: if the left subtree simplifies down to a leaf node with value equal to target, delete it by setting root.left = null.
+3. The bottom-up order ensures that if deleting a child leaf node turns its parent into a new leaf node with the target value, that newly formed leaf node is also deleted.
+4. Return head.right.
+
+Complexity:
+
+Time: O(n) where n is the number of nodes in the binary tree, as each node is visited once during the post-order traversal.
+Space: O(h) auxiliary recursion stack space where h is the height of the tree (O(log n) for balanced, O(n) worst case).
+
+Key Takeaway:
+Post-order traversal is essential when pruning leaf nodes because deleting child leaves can cascade upward and turn parent nodes into leaves. Using a dummy parent node cleanly handles deleting the root itself.
