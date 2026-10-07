@@ -1,0 +1,18 @@
+LeetCode 1731 - The Number of Employees Which Report to Each Employee
+
+Approach:
+
+1. Self-join the Employees table (as e1 representing managers and e2 representing direct reports) on e1.employee_id = e2.reports_to.
+2. Group by e2.reports_to (the manager's ID):
+   - Count the number of direct reports using count(e1.employee_id) as reports_count.
+   - Calculate the average age of direct reports rounded to the nearest integer using round(avg(e2.age)) as average_age.
+3. Select e1.employee_id, e1.name, reports_count, and average_age.
+4. Order the final results by employee_id ascending.
+
+Complexity:
+
+Time: O(N log N) where N is the number of employees, dominated by joining on reports_to, grouping, and sorting.
+Space: O(N) temporary space for the self-join and grouping operations.
+
+Key Takeaway:
+Self-joining a table where an entity references another entity in the same table (e.g. employee to manager) enables direct aggregation of subordinate records for each manager.

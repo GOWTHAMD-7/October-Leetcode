@@ -1,0 +1,16 @@
+LeetCode 1341 - Movie Rating
+
+Approach:
+
+1. The problem requires finding two distinct results combined into a single column:
+   - Part 1: The user who has rated the greatest number of movies. Join Users with MovieRating on user_id, group by user_id, and order by count of ratings descending, breaking ties by user name ascending. Take the top 1.
+   - Part 2: The movie with the highest average rating in February 2020. Join Movies with MovieRating on movie_id, filter ratings with month(created_at) = 2 and year(created_at) = 2020, group by movie_id, and order by average rating descending, breaking ties by movie title ascending. Take the top 1.
+2. Combine the two queries using UNION ALL so that duplicate names across the two parts (if any) are preserved.
+
+Complexity:
+
+Time: O(R log R + U + M) where R is the number of movie ratings, U is the number of users, and M is the number of movies, dominated by grouping and sorting ratings.
+Space: O(R + U + M) temporary space for joins, grouping, and ordering.
+
+Key Takeaway:
+Using UNION ALL with two separate subqueries enclosed in parentheses allows finding two independent aggregates with their own ordering and limit criteria in a single unified result set.

@@ -1,0 +1,15 @@
+LeetCode 1148 - Article Views I
+
+Approach:
+
+1. Filter rows in the Views table where author_id = viewer_id (meaning the author viewed their own article).
+2. Select distinct author_id to remove duplicates since an author may have viewed their own articles multiple times.
+3. Alias author_id as id and sort the output by id in ascending order.
+
+Complexity:
+
+Time: O(V log V) where V is the number of view records, due to filtering, duplicate elimination (DISTINCT), and sorting.
+Space: O(V) temporary space for sorting and deduplication.
+
+Key Takeaway:
+Filtering with a simple equality condition author_id = viewer_id and applying DISTINCT handles self-referential views while ensuring unique sorted IDs.

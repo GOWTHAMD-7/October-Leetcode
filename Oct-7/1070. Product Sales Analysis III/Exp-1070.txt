@@ -1,0 +1,15 @@
+LeetCode 1070 - Product Sales Analysis III
+
+Approach:
+
+1. Use the window function RANK() partitioned by product_id and ordered by year ascending to rank each product's sales records chronologically.
+2. In the outer query, filter records where rn = 1 to select only sales occurring in the product's earliest (first) recorded year.
+3. Select product_id, year aliased as first_year, quantity, and price.
+
+Complexity:
+
+Time: O(S log S) where S is the number of rows in the Sales table, due to partitioning and window sorting.
+Space: O(S) temporary space for the window calculation.
+
+Key Takeaway:
+Using RANK() OVER (PARTITION BY ... ORDER BY ...) accurately identifies all records matching the minimum/first year per group, handling ties naturally without needing correlated subqueries or self-joins.

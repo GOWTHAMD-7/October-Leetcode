@@ -1,0 +1,18 @@
+LeetCode 301 - Remove Invalid Parentheses
+
+Approach:
+
+1. Use backtracking to explore all possible subsets of valid parentheses strings by either including or excluding each parenthesis character:
+   - For '(': Recurse without including it, or append '(' and recurse.
+   - For ')': Recurse without including it, or append ')' only if close <= open (pruning branches where close > open).
+   - For other characters: Always append and recurse.
+2. Base case: When pos == len, verify if the constructed string is valid using valid(). If valid, add it to a HashSet to remove duplicate combinations.
+3. Post-process the set: Find the maximum length among all valid strings (since the problem requires the minimum number of removals, which corresponds to the maximum length) and return all valid strings of that maximum length.
+
+Complexity:
+
+Time: O(2^n) in the worst case where n is the length of s, as each character can either be kept or removed, with pruning on close > open.
+Space: O(n) auxiliary recursion stack space plus O(2^n) to store candidate strings in the set.
+
+Key Takeaway:
+Exploring include/exclude decisions with prefix pruning (close <= open) coupled with a final length filter ensures only valid expressions with minimum removals are returned without duplicate results.
