@@ -1,0 +1,21 @@
+LeetCode 3941 - Password Strength
+
+Approach:
+
+1. Use a HashSet to track distinct characters present in password string s so each unique character contributes to the strength score only once.
+2. Iterate through each character in s:
+   - If the character is already in the set, skip it to prevent duplicate scoring.
+   - Otherwise, add the character to the set and evaluate its category using ASCII ranges:
+     * Digits ('0'-'9', ASCII 48-57): add 3 points.
+     * Uppercase letters / related uppercase range (ASCII 65-92): add 2 points.
+     * Lowercase letters ('a'-'z', ASCII 97-122): add 1 point.
+     * Special characters (all other ASCII values): add 5 points.
+3. Return the total accumulated strength score ret.
+
+Complexity:
+
+Time: O(n) where n is the length of string s, as each character is inspected and set operations take O(1) time.
+Space: O(k) auxiliary space for the HashSet, where k is the number of unique characters (at most the character set size, bounded by 128 for ASCII).
+
+Key Takeaway:
+Deduplicating characters with a hash set ensures unique character contribution, allowing simple ASCII range checks to classify each distinct character into its assigned score tier.
